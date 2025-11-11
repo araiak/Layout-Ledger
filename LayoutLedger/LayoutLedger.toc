@@ -5,9 +5,9 @@
 ## Version: 1.0.0
 
 embeds.xml
+UI.xml
 Core.lua
 Export.lua
 Import.lua
 Serialize.lua
 Options.lua
-UI.xml
