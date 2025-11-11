@@ -1,0 +1,199 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Frame name="LayoutLedgerFrame" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+        <Scripts>
+            <OnLoad>
+                LayoutLedger.OnLoad(self)
+            </OnLoad>
+        </Scripts>
+        <Size x="400" y="500"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+            <BackgroundInsets>
+                <AbsInset left="11" right="12" top="12" bottom="11"/>
+            </Backdrop>
+            <TileSize>
+                <AbsValue val="32"/>
+            </TileSize>
+            <EdgeSize>
+                <AbsValue val="32"/>
+            </EdgeSize>
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Layout Ledger">
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+                            <Offset x="0" y="-20"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame name="$parentExportSection">
+                <Size x="360" y="200"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentTitle" relativePoint="BOTTOM">
+                        <Offset x="0" y="-20"/>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentTitle" inherits="GameFontNormal" text="Export">
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset x="10" y="-10"/>
+                                </Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <CheckButton name="$parentActionBars" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="20" y="-40"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                getglobal(self:GetName().."Text"):SetText("Action Bars")
+                            </OnLoad>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentKeybindings" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentActionBars" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                getglobal(self:GetName().."Text"):SetText("Keybindings")
+                            </OnLoad>
+                        </Scripts>
+                    </CheckButton>
+                    <Texture name="$parentKeybindingsWarning" texture="Interface\DialogFrame\UI-Dialog-Icon-AlertNew" hidden="false">
+                        <Size x="20" y="20"/>
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentKeybindings" relativePoint="RIGHT">
+                                <Offset x="5" y="0"/>
+                            </Anchor>
+                        </Anchors>
+                    </Texture>
+                    <CheckButton name="$parentUILayout" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentKeybindings" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                getglobal(self:GetName().."Text"):SetText("UI Layout")
+                            </OnLoad>
+                        </Scripts>
+                    </CheckButton>
+                    <Texture name="$parentUILayoutWarning" texture="Interface\DialogFrame\UI-Dialog-Icon-AlertNew" hidden="false">
+                        <Size x="20" y="20"/>
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentUILayout" relativePoint="RIGHT">
+                                <Offset x="5" y="0"/>
+                            </Anchor>
+                        </Anchors>
+                    </Texture>
+                    <CheckButton name="$parentCharacterMacros" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentUILayout" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                getglobal(self:GetName().."Text"):SetText("Character Macros")
+                            </OnLoad>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentGlobalMacros" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentCharacterMacros" relativePoint="BOTTOMLEFT"/>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                getglobal(self:GetName().."Text"):SetText("Global Macros")
+                            </OnLoad>
+                        </Scripts>
+                    </CheckButton>
+                    <Button name="$parentExportButton" inherits="UIPanelButtonTemplate" text="Export">
+                        <Size x="100" y="25"/>
+                        <Anchors>
+                            <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+                                <Offset x="0" y="20"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger.Export_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+            <Frame name="$parentImportSection">
+                <Size x="360" y="200"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentExportSection" relativePoint="BOTTOM">
+                        <Offset x="0" y="-20"/>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentTitle" inherits="GameFontNormal" text="Import">
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset x="10" y="-10"/>
+                                </Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <ScrollFrame name="$parentImportScrollFrame" inherits="UIPanelScrollFrameTemplate">
+                        <Size x="340" y="100"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="10" y="-30"/>
+                            </Anchor>
+                        </Anchors>
+                        <ScrollChild>
+                            <EditBox name="$parentImportBox" multiLine="true" letters="0" autoFocus="false">
+                                <Size x="340" y="100"/>
+                                <Scripts>
+                                    <OnEscapePressed>
+                                        self:ClearFocus()
+                                    </OnEscapePressed>
+                                </Scripts>
+                                <FontString inherits="ChatFontNormal"/>
+                            </EditBox>
+                        </ScrollChild>
+                    </ScrollFrame>
+                    <Button name="$parentImportButton" inherits="UIPanelButtonTemplate" text="Import">
+                        <Size x="100" y="25"/>
+                        <Anchors>
+                            <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+                                <Offset x="0" y="20"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger.Import_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset x="0" y="0"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+    </Frame>
+</Ui>

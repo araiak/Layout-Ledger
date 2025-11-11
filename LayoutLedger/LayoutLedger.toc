@@ -1,0 +1,12 @@
+## Interface: 100207
+## Title: Layout Ledger
+## Notes: Import and export your UI and character settings.
+## Author: Jules
+## Version: 1.0.0
+
+embeds.xml
+Core.lua
+Export.lua
+Import.lua
+Serialize.lua
+UI.xml
