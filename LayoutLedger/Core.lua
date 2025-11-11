@@ -33,29 +33,21 @@ end
 function LayoutLedger:OnAddonLoaded(event, addonName)
     print("LayoutLedger: OnAddonLoaded - " .. addonName)
     if addonName == "LayoutLedger" then
-        self:InitializeUI()
+        self.frame = LayoutLedgerFrame
+        self.importBox = LayoutLedgerFrameImportSectionImportScrollFrameImportBox
+        self.revertButton = LayoutLedgerFrameImportSectionRevertButton
+        self:UpdateRevertButton()
     end
 end
 
-function LayoutLedger:InitializeUI()
-    print("LayoutLedger: InitializeUI")
-    local frame = CreateFrame("Frame", "LayoutLedgerFrame", UIParent, "BasicFrameTemplateWithInset")
-    frame:SetSize(400, 500)
-    frame:SetPoint("CENTER")
-    frame:SetMovable(true)
-    frame:EnableMouse(true)
-    frame:RegisterForDrag("LeftButton")
-    frame:SetScript("OnDragStart", frame.StartMoving)
-    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
-    frame:Show() -- Explicitly show the frame
-
-    local title = frame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-    title:SetPoint("TOP", 0, -20)
-    title:SetText("Layout Ledger")
-
-    self.frame = frame
-    self:UpdateRevertButton()
+function LayoutLedger:UpdateRevertButton()
+    if self.db.profile.lastSettings then
+        self.revertButton:Enable()
+    else
+        self.revertButton:Disable()
+    end
 end
+
 
 function LayoutLedger:ToggleFrame()
     print("LayoutLedger: ToggleFrame")
