@@ -103,12 +103,25 @@
                         <Size x="100" y="25"/>
                         <Anchors>
                             <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
-                                <Offset x="0" y="20"/>
+                                <Offset x="-55" y="20"/>
                             </Anchor>
                         </Anchors>
                         <Scripts>
                             <OnClick>
                                 LayoutLedger:Import_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="$parentRevertButton" inherits="UIPanelButtonTemplate" text="Revert">
+                        <Size x="100" y="25"/>
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentImportButton" relativePoint="RIGHT">
+                                <Offset x="10" y="0"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger:Revert_OnClick()
                             </OnClick>
                         </Scripts>
                     </Button>

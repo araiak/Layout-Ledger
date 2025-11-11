@@ -9,5 +9,5 @@ Core.lua
 Export.lua
 Import.lua
 Serialize.lua
-UI.xml
 Options.lua
+UI.xml
