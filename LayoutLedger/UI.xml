@@ -1,20 +1,9 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-    <Frame name="LayoutLedgerFrame" parent="UIParent" movable="true" enableMouse="true" hidden="true">
-        <Size x="400" y="500"/>
+    <Frame name="LayoutLedgerFrame" parent="UIParent" movable="true" enableMouse="true" hidden="true" inherits="BackdropTemplate">
+        <Size x="420" y="640"/>
         <Anchors>
             <Anchor point="CENTER"/>
         </Anchors>
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
-            <BackgroundInsets>
-                <AbsInset left="11" right="12" top="12" bottom="11"/>
-            </Backdrop>
-            <TileSize>
-                <AbsValue val="32"/>
-            </TileSize>
-            <EdgeSize>
-                <AbsValue val="32"/>
-            </EdgeSize>
-        </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
                 <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Layout Ledger">
@@ -28,15 +17,15 @@
         </Layers>
         <Frames>
             <Frame name="$parentExportSection">
-                <Size x="360" y="200"/>
+                <Size x="380" y="280"/>
                 <Anchors>
                     <Anchor point="TOP" relativeTo="$parentTitle" relativePoint="BOTTOM">
-                        <Offset x="0" y="-20"/>
+                        <Offset x="0" y="-15"/>
                     </Anchor>
                 </Anchors>
                 <Layers>
                     <Layer level="ARTWORK">
-                        <FontString name="$parentTitle" inherits="GameFontNormal" text="Export">
+                        <FontString name="$parentTitle" inherits="GameFontNormal" text="Export Options">
                             <Anchors>
                                 <Anchor point="TOPLEFT">
                                     <Offset x="10" y="-10"/>
@@ -46,11 +35,109 @@
                     </Layer>
                 </Layers>
                 <Frames>
+                    <CheckButton name="$parentActionBarsCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="15" y="-35"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.actionBars = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentKeybindingsCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentActionBarsCheck" relativePoint="BOTTOMLEFT">
+                                <Offset x="0" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.keybindings = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentUILayoutCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentKeybindingsCheck" relativePoint="BOTTOMLEFT">
+                                <Offset x="0" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.uiLayout = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentCooldownLayoutCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentUILayoutCheck" relativePoint="BOTTOMLEFT">
+                                <Offset x="0" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.cooldownLayout = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentCharacterMacrosCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentCooldownLayoutCheck" relativePoint="BOTTOMLEFT">
+                                <Offset x="0" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.characterMacros = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentGlobalMacrosCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentCharacterMacrosCheck" relativePoint="BOTTOMLEFT">
+                                <Offset x="0" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.globalMacros = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
+                    <CheckButton name="$parentCVarsCheck" inherits="UICheckButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentGlobalMacrosCheck" relativePoint="BOTTOMLEFT">
+                                <Offset x="0" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                if LayoutLedger.db then
+                                    LayoutLedger.db.profile.export.cvars = self:GetChecked()
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </CheckButton>
                     <Button name="$parentExportButton" inherits="UIPanelButtonTemplate" text="Export">
                         <Size x="100" y="25"/>
                         <Anchors>
                             <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
-                                <Offset x="0" y="20"/>
+                                <Offset x="-35" y="20"/>
                             </Anchor>
                         </Anchors>
                         <Scripts>
@@ -59,13 +146,39 @@
                             </OnClick>
                         </Scripts>
                     </Button>
+                    <Button name="$parentCopyButton" inherits="UIPanelButtonTemplate" text="Copy">
+                        <Size x="60" y="25"/>
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentExportButton" relativePoint="RIGHT">
+                                <Offset x="5" y="0"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger:Copy_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="$parentClassProfileButton" inherits="UIPanelButtonTemplate" text="Class Profile">
+                        <Size x="120" y="25"/>
+                        <Anchors>
+                            <Anchor point="TOP" relativeTo="$parentExportButton" relativePoint="BOTTOM">
+                                <Offset x="30" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger:ShowClassProfileFrame()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
                 </Frames>
             </Frame>
             <Frame name="$parentImportSection">
-                <Size x="360" y="200"/>
+                <Size x="380" y="260"/>
                 <Anchors>
                     <Anchor point="TOP" relativeTo="$parentExportSection" relativePoint="BOTTOM">
-                        <Offset x="0" y="-20"/>
+                        <Offset x="0" y="-10"/>
                     </Anchor>
                 </Anchors>
                 <Layers>
@@ -81,29 +194,82 @@
                 </Layers>
                 <Frames>
                     <ScrollFrame name="$parentImportScrollFrame" inherits="UIPanelScrollFrameTemplate">
-                        <Size x="340" y="100"/>
+                        <Size x="360" y="160"/>
                         <Anchors>
                             <Anchor point="TOPLEFT">
-                                <Offset x="10" y="-30"/>
+                                <Offset x="10" y="-35"/>
                             </Anchor>
                         </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                -- Add visible background to the scroll frame
+                                local bg = self:CreateTexture(nil, "BACKGROUND")
+                                bg:SetAllPoints(self)
+                                bg:SetColorTexture(0, 0, 0, 0.7)
+
+                                local border = self:CreateTexture(nil, "BORDER")
+                                border:SetAllPoints(self)
+                                border:SetColorTexture(0.3, 0.3, 0.3, 1)
+                            </OnLoad>
+                        </Scripts>
                         <ScrollChild>
-                            <EditBox name="$parentImportBox" multiLine="true" letters="0" autoFocus="false">
-                                <Size x="340" y="100"/>
+                            <EditBox name="$parentImportBox" multiLine="true" letters="0" autoFocus="false" enableMouse="true" enableKeyboard="true">
+                                <Size x="340" y="150"/>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT">
+                                        <Offset x="5" y="0"/>
+                                    </Anchor>
+                                </Anchors>
                                 <Scripts>
+                                    <OnLoad>
+                                        self:SetMaxLetters(0)
+                                        self:SetMultiLine(true)
+                                        self:SetEnabled(true)
+                                        self:SetAutoFocus(false)
+                                        self:EnableKeyboard(true)
+                                        self:EnableMouse(true)
+                                    </OnLoad>
                                     <OnEscapePressed>
                                         self:ClearFocus()
                                     </OnEscapePressed>
+                                    <OnEditFocusGained>
+                                        -- When focused, capture keyboard input
+                                        self:EnableKeyboard(true)
+                                        self:SetAltArrowKeyMode(false)
+                                    </OnEditFocusGained>
+                                    <OnEditFocusLost>
+                                        -- When losing focus, release keyboard
+                                        self:EnableKeyboard(false)
+                                    </OnEditFocusLost>
+                                    <OnMouseUp>
+                                        self:SetFocus()
+                                    </OnMouseUp>
+                                    <OnShow>
+                                        self:SetCursorPosition(0)
+                                    </OnShow>
                                 </Scripts>
                                 <FontString inherits="ChatFontNormal"/>
                             </EditBox>
                         </ScrollChild>
                     </ScrollFrame>
-                    <Button name="$parentImportButton" inherits="UIPanelButtonTemplate" text="Import">
-                        <Size x="100" y="25"/>
+                    <Button name="$parentPasteButton" inherits="UIPanelButtonTemplate" text="Paste">
+                        <Size x="70" y="25"/>
                         <Anchors>
                             <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
-                                <Offset x="-55" y="20"/>
+                                <Offset x="-135" y="15"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger:Paste_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="$parentImportButton" inherits="UIPanelButtonTemplate" text="Import">
+                        <Size x="80" y="25"/>
+                        <Anchors>
+                            <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+                                <Offset x="-50" y="15"/>
                             </Anchor>
                         </Anchors>
                         <Scripts>
@@ -113,15 +279,28 @@
                         </Scripts>
                     </Button>
                     <Button name="$parentRevertButton" inherits="UIPanelButtonTemplate" text="Revert">
-                        <Size x="100" y="25"/>
+                        <Size x="80" y="25"/>
                         <Anchors>
                             <Anchor point="LEFT" relativeTo="$parentImportButton" relativePoint="RIGHT">
-                                <Offset x="10" y="0"/>
+                                <Offset x="5" y="0"/>
                             </Anchor>
                         </Anchors>
                         <Scripts>
                             <OnClick>
                                 LayoutLedger:Revert_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="$parentSavedProfilesButton" inherits="UIPanelButtonTemplate" text="Saved Profiles">
+                        <Size x="120" y="25"/>
+                        <Anchors>
+                            <Anchor point="TOP" relativeTo="$parentRevertButton" relativePoint="BOTTOM">
+                                <Offset x="-5" y="-5"/>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                LayoutLedger:ShowSavedProfilesFrame()
                             </OnClick>
                         </Scripts>
                     </Button>
@@ -135,5 +314,616 @@
                 </Anchors>
             </Button>
         </Frames>
+    </Frame>
+
+    <!-- Smart Import Dialog -->
+    <Frame name="LayoutLedgerSmartImportFrame" parent="UIParent" frameStrata="DIALOG" movable="false" enableMouse="true" hidden="true" inherits="BackdropTemplate">
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Scripts>
+            <OnLoad>
+                -- Dynamic sizing based on screen resolution
+                local screenWidth = UIParent:GetWidth()
+                local screenHeight = UIParent:GetHeight()
+
+                -- Use 45% of screen width, min 500px, max 700px
+                local frameWidth = math.max(500, math.min(700, screenWidth * 0.45))
+                -- Use 70% of screen height, min 550px, max 700px
+                local frameHeight = math.max(550, math.min(700, screenHeight * 0.70))
+
+                self:SetSize(frameWidth, frameHeight)
+
+                -- Update scroll frame width dynamically
+                local scrollFrame = self:GetChildren()
+                if scrollFrame then
+                    for _, child in pairs({self:GetChildren()}) do
+                        if child:GetName() and child:GetName():find("ScrollFrame") then
+                            local scrollWidth = frameWidth - 40
+                            child:SetWidth(scrollWidth)
+
+                            -- Update scroll child width
+                            local scrollChild = child:GetScrollChild()
+                            if scrollChild then
+                                scrollChild:SetWidth(scrollWidth - 20)
+                            end
+                        end
+                    end
+                end
+            </OnLoad>
+        </Scripts>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Import Layout">
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset x="0" y="-20"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentSourceInfo" inherits="GameFontNormal" justifyH="CENTER">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+                            <Offset x="20" y="-10"/>
+                        </Anchor>
+                        <Anchor point="TOPRIGHT" relativeTo="$parentTitle" relativePoint="BOTTOMRIGHT">
+                            <Offset x="-20" y="-10"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentInstruction" inherits="GameFontHighlight" text="Select what to import:" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset x="30" y="-80"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <!-- Scroll frame for import options -->
+            <ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentInstruction" relativePoint="BOTTOMLEFT">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                    <Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+                        <Offset x="-20" y="0"/>
+                    </Anchor>
+                    <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+                        <Offset x="0" y="150"/>
+                    </Anchor>
+                </Anchors>
+                <ScrollChild>
+                    <Frame name="$parentScrollChild">
+                        <!-- Size will be set dynamically based on parent scroll frame -->
+                        <Anchors>
+                            <Anchor point="TOPLEFT"/>
+                        </Anchors>
+                        <!-- Content will be dynamically created in Lua -->
+                    </Frame>
+                </ScrollChild>
+            </ScrollFrame>
+
+            <!-- Import Mode Dropdown placeholder -->
+            <Frame name="$parentModeFrame">
+                <Size y="30"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentScrollFrame" relativePoint="BOTTOMLEFT">
+                        <Offset x="30" y="-10"/>
+                    </Anchor>
+                    <Anchor point="TOPRIGHT" relativeTo="$parentScrollFrame" relativePoint="BOTTOMRIGHT">
+                        <Offset x="-30" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentModeLabel" inherits="GameFontNormal" text="Import Mode:" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT">
+                                    <Offset x="0" y="0"/>
+                                </Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Buttons -->
+            <Button name="$parentImportButton" inherits="UIPanelButtonTemplate" text="Import Selected">
+                <Size x="140" y="30"/>
+                <Anchors>
+                    <Anchor point="BOTTOM">
+                        <Offset x="-75" y="20"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:SmartImport_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentCancelButton" inherits="UIPanelButtonTemplate" text="Cancel">
+                <Size x="140" y="30"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentImportButton" relativePoint="RIGHT">
+                        <Offset x="10" y="0"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="0" y="0"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                -- Set up backdrop
+                if self.SetBackdrop then
+                    self:SetBackdrop({
+                        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+                        tile = true,
+                        tileSize = 32,
+                        edgeSize = 32,
+                        insets = { left = 11, right = 12, top = 12, bottom = 11 }
+                    })
+                    self:SetBackdropColor(0, 0, 0, 1)
+                    self:SetBackdropBorderColor(1, 1, 1, 1)
+                end
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+    <!-- Class Profile Management Dialog -->
+    <Frame name="LayoutLedgerClassProfileFrame" parent="UIParent" frameStrata="DIALOG" movable="false" enableMouse="true" hidden="true" inherits="BackdropTemplate">
+        <Size x="450" y="400"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Class Profile Manager">
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset x="0" y="-20"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentInfo" inherits="GameFontHighlight" justifyH="LEFT">
+                    <Size x="410" y="120"/>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentTitle" relativePoint="BOTTOM">
+                            <Offset x="0" y="-20"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <!-- Update Class Profile Button -->
+            <Button name="$parentUpdateButton" inherits="UIPanelButtonTemplate" text="Update Class Profile">
+                <Size x="180" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentInfo" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:UpdateClassProfile_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Export Class Profile Button -->
+            <Button name="$parentExportButton" inherits="UIPanelButtonTemplate" text="Export Class Profile">
+                <Size x="180" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentUpdateButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:ExportClassProfile_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Update from Class Profile Button -->
+            <Button name="$parentUpdateFromButton" inherits="UIPanelButtonTemplate" text="Update from Class Profile">
+                <Size x="180" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentExportButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:UpdateFromClassProfile_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Auto-save checkbox -->
+            <CheckButton name="$parentAutoSaveCheck" inherits="UICheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentUpdateFromButton" relativePoint="BOTTOM">
+                        <Offset x="-65" y="-15"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        if LayoutLedger.db then
+                            LayoutLedger.db.char.autoSaveSpecBars = self:GetChecked()
+                        end
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Test Cooldown Viewer Button (Debug) -->
+            <Button name="$parentTestCooldownButton" inherits="UIPanelButtonTemplate" text="Test Cooldown Viewer">
+                <Size x="160" y="25"/>
+                <Anchors>
+                    <Anchor point="BOTTOM">
+                        <Offset x="0" y="50"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:TestCooldownViewer()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Close Button -->
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="0" y="0"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                -- Set up backdrop
+                if self.SetBackdrop then
+                    self:SetBackdrop({
+                        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+                        tile = true,
+                        tileSize = 32,
+                        edgeSize = 32,
+                        insets = { left = 11, right = 12, top = 12, bottom = 11 }
+                    })
+                    self:SetBackdropColor(0, 0, 0, 1)
+                    self:SetBackdropBorderColor(1, 1, 1, 1)
+                end
+            </OnLoad>
+            <OnShow>
+                LayoutLedger:RefreshClassProfileUI()
+            </OnShow>
+        </Scripts>
+    </Frame>
+
+    <!-- Debug/Testing Menu -->
+    <Frame name="LayoutLedgerDebugFrame" parent="UIParent" frameStrata="DIALOG" movable="false" enableMouse="true" hidden="true" inherits="BackdropTemplate">
+        <Size x="500" y="550"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Debug / Testing Menu">
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset x="0" y="-20"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentWarning" inherits="GameFontHighlight" justifyH="CENTER">
+                    <Size x="460" y="40"/>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentTitle" relativePoint="BOTTOM">
+                            <Offset x="0" y="-10"/>
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="0.3" b="0.3"/>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <!-- Clear Character Macros Button -->
+            <Button name="$parentClearCharMacrosButton" inherits="UIPanelButtonTemplate" text="Clear Character Macros">
+                <Size x="220" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentWarning" relativePoint="BOTTOM">
+                        <Offset x="0" y="-20"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:Debug_ClearCharacterMacros()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Clear Global Macros Button -->
+            <Button name="$parentClearGlobalMacrosButton" inherits="UIPanelButtonTemplate" text="Clear Global Macros">
+                <Size x="220" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentClearCharMacrosButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:Debug_ClearGlobalMacros()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Clear All Action Bars Button -->
+            <Button name="$parentClearActionBarsButton" inherits="UIPanelButtonTemplate" text="Clear All Action Bars">
+                <Size x="220" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentClearGlobalMacrosButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:Debug_ClearActionBars()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Reset Keybindings Button -->
+            <Button name="$parentResetKeybindingsButton" inherits="UIPanelButtonTemplate" text="Reset Keybindings">
+                <Size x="220" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentClearActionBarsButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:Debug_ResetKeybindings()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Delete Custom Edit Mode Layouts Button -->
+            <Button name="$parentDeleteLayoutsButton" inherits="UIPanelButtonTemplate" text="Delete Custom Edit Mode Layouts">
+                <Size x="220" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentResetKeybindingsButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:Debug_DeleteCustomLayouts()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Clear Addon Database Button -->
+            <Button name="$parentClearDatabaseButton" inherits="UIPanelButtonTemplate" text="Clear Addon Database">
+                <Size x="220" y="30"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentDeleteLayoutsButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:Debug_ClearDatabase()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- Info Text -->
+            <Frame name="$parentInfoFrame">
+                <Size x="460" y="80"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentClearDatabaseButton" relativePoint="BOTTOM">
+                        <Offset x="0" y="-20"/>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentInfoText" inherits="GameFontHighlightSmall" justifyH="LEFT" justifyV="TOP">
+                            <Size x="460" y="80"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Close Button -->
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="Close">
+                <Size x="140" y="30"/>
+                <Anchors>
+                    <Anchor point="BOTTOM">
+                        <Offset x="0" y="20"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <!-- X Close Button -->
+            <Button name="$parentXButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="0" y="0"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                -- Set up backdrop
+                if self.SetBackdrop then
+                    self:SetBackdrop({
+                        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+                        tile = true,
+                        tileSize = 32,
+                        edgeSize = 32,
+                        insets = { left = 11, right = 12, top = 12, bottom = 11 }
+                    })
+                    self:SetBackdropColor(0, 0, 0, 1)
+                    self:SetBackdropBorderColor(1, 1, 1, 1)
+                end
+            </OnLoad>
+            <OnShow>
+                LayoutLedger:RefreshDebugUI()
+            </OnShow>
+        </Scripts>
+    </Frame>
+
+    <!-- Saved Profiles Frame -->
+    <Frame name="LayoutLedgerSavedProfilesFrame" parent="UIParent" movable="true" enableMouse="true" hidden="true" inherits="BackdropTemplate">
+        <Size x="500" y="500"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Saved Profiles">
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset x="0" y="-20"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentInfo" inherits="GameFontHighlightSmall" justifyH="LEFT">
+                    <Size x="460" y="80"/>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentTitle" relativePoint="BOTTOM">
+                            <Offset x="0" y="-10"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <!-- Scroll frame for profile list -->
+            <ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
+                <Size x="460" y="280"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentInfo" relativePoint="BOTTOM">
+                        <Offset x="0" y="-10"/>
+                    </Anchor>
+                </Anchors>
+                <ScrollChild>
+                    <Frame name="$parentScrollChild">
+                        <Size x="440" y="280"/>
+                    </Frame>
+                </ScrollChild>
+            </ScrollFrame>
+
+            <!-- Save New Profile Section -->
+            <EditBox name="$parentProfileNameInput" inherits="InputBoxTemplate" autoFocus="false">
+                <Size x="220" y="25"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT">
+                        <Offset x="20" y="105"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEscapePressed>
+                        self:ClearFocus()
+                    </OnEscapePressed>
+                    <OnEnterPressed>
+                        LayoutLedger:SaveNewProfile_OnClick(false)
+                        self:ClearFocus()
+                    </OnEnterPressed>
+                </Scripts>
+            </EditBox>
+            <Button name="$parentSaveButton" inherits="UIPanelButtonTemplate" text="Save Simple">
+                <Size x="100" y="25"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentProfileNameInput" relativePoint="RIGHT">
+                        <Offset x="5" y="0"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:SaveNewProfile_OnClick(false)
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parentSaveClassButton" inherits="UIPanelButtonTemplate" text="Save as Class">
+                <Size x="120" y="25"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentSaveButton" relativePoint="RIGHT">
+                        <Offset x="5" y="0"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        LayoutLedger:SaveNewProfile_OnClick(true)
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <FontString name="$parentSaveHint" inherits="GameFontHighlightSmall" text="Enter a name above, then click 'Save Simple' (current settings) or 'Save as Class' (all specs)" justifyH="LEFT">
+                <Size x="460" y="30"/>
+                <Anchors>
+                    <Anchor point="BOTTOM" relativeTo="$parentProfileNameInput" relativePoint="TOP">
+                        <Offset x="120" y="5"/>
+                    </Anchor>
+                </Anchors>
+            </FontString>
+
+            <!-- Close button -->
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="Close">
+                <Size x="100" y="25"/>
+                <Anchors>
+                    <Anchor point="BOTTOM">
+                        <Offset x="0" y="20"/>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnShow>
+                LayoutLedger:RefreshSavedProfilesUI()
+            </OnShow>
+            <OnMouseDown>
+                if button == "LeftButton" and self:IsMovable() then
+                    self:StartMoving()
+                end
+            </OnMouseDown>
+            <OnMouseUp>
+                if button == "LeftButton" then
+                    self:StopMovingOrSizing()
+                end
+            </OnMouseUp>
+        </Scripts>
     </Frame>
 </Ui>

@@ -7,8 +7,10 @@
     <Script file="Libs\AceDB-3.0.lua"/>
     <Script file="Libs\AceConsole-3.0.lua"/>
     <Script file="Libs\AceGUI-3.0.lua"/>
+    <Script file="Libs\AceConfigRegistry-3.0.lua"/>
+    <Script file="Libs\AceConfigCmd-3.0.lua"/>
     <Script file="Libs\AceConfig-3.0.lua"/>
     <Script file="Libs\AceConfigDialog-3.0.lua"/>
-    <Script file="Libs\AceConfigCmd-3.0.lua"/>
     <Script file="Libs\AceSerializer-3.0.lua"/>
+    <Script file="Libs\LibDeflate.lua"/>
 </Ui>

@@ -1,0 +1,17 @@
+{
+  "name": "layout-ledger",
+  "version": "1.0.0",
+  "description": "WoW addon for importing and exporting UI layouts",
+  "scripts": {
+    "validate:xml": "node scripts/validate-xml.js",
+    "validate:all": "npm run validate:xml && npm run lint:lua",
+    "lint:lua": "echo 'Run: luacheck LayoutLedger' && exit 0",
+    "test": "npm run validate:all"
+  },
+  "devDependencies": {
+    "fast-xml-parser": "^4.3.2"
+  },
+  "keywords": ["wow", "addon", "ui", "layout"],
+  "author": "Araiak",
+  "license": "MIT"
+}

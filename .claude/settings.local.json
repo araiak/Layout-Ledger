@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(luacheck:*)",
+      "Bash(npm --version:*)",
+      "Bash(choco --version:*)",
+      "Bash(npm run validate:xml:*)",
+      "Bash(npm install)",
+      "WebFetch(domain:warcraft.wiki.gg)",
+      "WebFetch(domain:www.wowace.com)",
+      "Bash(node scripts/validate-xml.js:*)",
+      "WebFetch(domain:wowpedia.fandom.com)",
+      "Bash(findstr:*)",
+      "Bash(dir \"C:\\Users\\taint\\OneDrive\\Documents\\GitHub\\Layout-Ledger\\*.md\" /b)",
+      "Bash(chmod:*)",
+      "Bash(.git/hooks/pre-commit)",
+      "Bash(cat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
